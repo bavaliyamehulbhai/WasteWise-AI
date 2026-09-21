@@ -11,6 +11,7 @@
 - **College Name:** [Your College / Institute Name]
 - **Internship Program:** 1M1B AI for Sustainability Virtual Internship (In Collaboration with IBM SkillsBuild & AICTE)
 - **Track / Category:** Water & Waste (AI-Based Waste Segregation Guide)
+- **Live Website URL:** https://wastewise-ai-hazel.vercel.app/
 
 ---
 
