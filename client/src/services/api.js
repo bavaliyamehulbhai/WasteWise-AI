@@ -1,10 +1,13 @@
 import axios from "axios";
 
+const rawUrl = (import.meta.env.VITE_API_URL || "http://localhost:5000/api").trim();
+const normalizedBaseURL = rawUrl.replace(/\/+$/, "").endsWith("/api")
+  ? rawUrl.replace(/\/+$/, "")
+  : `${rawUrl.replace(/\/+$/, "")}/api`;
+
 const api = axios.create({
-  baseURL:
-    import.meta.env.VITE_API_URL ||
-    "http://localhost:5000/api",
-  timeout: 45000, // 45s — server Gemini has 30s timeout + processing overhead
+  baseURL: normalizedBaseURL,
+  timeout: 45000,
 });
 
 // Automatically attach JWT
