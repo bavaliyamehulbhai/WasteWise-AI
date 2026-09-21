@@ -1,9 +1,42 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft, CheckCircle2, Award, ArrowRight, Clock, Sparkles } from "lucide-react";
-import ReactMarkdown from "react-markdown";
 import api from "../services/api";
 import Button from "../components/ui/Button";
+
+function MarkdownRenderer({ content = "" }) {
+  if (!content) return null;
+
+  const paragraphs = content.split(/\n\n+/);
+
+  return (
+    <div className="space-y-4 leading-relaxed">
+      {paragraphs.map((p, idx) => {
+        const trimmed = p.trim();
+        if (trimmed.startsWith("### ")) {
+          return <h3 key={idx} className="text-xl font-bold text-text-primary mt-6 mb-2">{trimmed.slice(4)}</h3>;
+        }
+        if (trimmed.startsWith("## ")) {
+          return <h2 key={idx} className="text-2xl font-bold text-text-primary mt-8 mb-3">{trimmed.slice(3)}</h2>;
+        }
+        if (trimmed.startsWith("# ")) {
+          return <h1 key={idx} className="text-3xl font-extrabold text-text-primary mt-8 mb-4">{trimmed.slice(2)}</h1>;
+        }
+        if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+          const lines = trimmed.split(/\n/).filter(line => line.trim());
+          return (
+            <ul key={idx} className="list-disc list-inside space-y-1.5 my-3">
+              {lines.map((l, lIdx) => (
+                <li key={lIdx} className="text-text-muted">{l.replace(/^[-*]\s+/, "")}</li>
+              ))}
+            </ul>
+          );
+        }
+        return <p key={idx} className="text-base text-text-muted leading-relaxed">{trimmed}</p>;
+      })}
+    </div>
+  );
+}
 
 export default function LearningDetail() {
   const { slug } = useParams();
@@ -124,8 +157,8 @@ export default function LearningDetail() {
         {/* Content Body */}
         {!takingQuiz ? (
           <div className="p-10 md:p-16">
-            <div className="prose prose-zinc prose-lg dark:prose-invert max-w-none text-text-secondary leading-relaxed marker:text-brand prose-headings:text-text-primary prose-a:text-brand prose-strong:text-text-primary">
-              <ReactMarkdown>{module.content}</ReactMarkdown>
+            <div className="max-w-none text-text-secondary leading-relaxed">
+              <MarkdownRenderer content={module.content} />
             </div>
 
             <div className="mt-16 pt-16 border-t border-border-default">
