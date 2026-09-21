@@ -4,10 +4,8 @@
 > *Developed for 1M1B – IBM SkillsBuild AI + Sustainability Virtual Internship (In Collaboration with AICTE)*
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://wastewise-ai-hazel.vercel.app/)
-[![API Backend](https://img.shields.io/badge/API_Backend-Render-46E3B7?style=for-the-badge&logo=render)](https://wastewise-ai-backend-bp15.onrender.com)
 
-🌐 **Live Web Application:** [https://wastewise-ai-hazel.vercel.app/](https://wastewise-ai-hazel.vercel.app/)  
-⚡ **Production Backend API:** [https://wastewise-ai-backend-bp15.onrender.com](https://wastewise-ai-backend-bp15.onrender.com)
+🌐 **Live Website:** [https://wastewise-ai-hazel.vercel.app/](https://wastewise-ai-hazel.vercel.app/)
 
 WasteWise AI is a progressive web application (PWA) that leverages vision-based Artificial Intelligence to classify waste images and provide immediate, actionable disposal guidance. 
 
