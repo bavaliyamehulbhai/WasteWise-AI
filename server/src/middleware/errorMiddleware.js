@@ -14,15 +14,16 @@ export const errorHandler = (
   res,
   next
 ) => {
-  console.error(error);
-  import("fs").then(fs => {
-    fs.appendFileSync("global_error.log", new Date().toISOString() + "\n" + (error.stack || error.message) + "\n\n");
-  }).catch(e => console.error("Could not write log", e));
-
   let statusCode =
     res.statusCode >= 400
       ? res.statusCode
       : 500;
+
+  if (statusCode >= 500) {
+    console.error(error);
+  } else {
+    console.warn(`[${statusCode}] ${req.method} ${req.originalUrl} - ${error.message}`);
+  }
       
   let errorCode = error.code || "INTERNAL_ERROR";
   let errorMessage = error.message || "Internal server error";

@@ -89,6 +89,15 @@ app.use("/api/goals", goalRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/resources", resourceRoutes);
 
+// Root endpoint (for Render health-check & status)
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "WasteWise AI Backend API is live",
+    version: "1.0.0",
+  });
+});
+
 // Health check
 app.get("/api/health", (req, res) => {
   res.status(200).json({
