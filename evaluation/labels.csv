@@ -1,0 +1,9 @@
+filename,ground_truth
+# Add your evaluation images to the images/ directory and list them here
+# Example:
+# bottle01.jpg,Plastic
+# can01.jpg,Metal
+# newspaper01.jpg,Paper
+# apple01.jpg,Organic
+# glass01.jpg,Glass
+# charger01.jpg,E-Waste

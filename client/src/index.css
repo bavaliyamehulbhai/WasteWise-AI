@@ -1,2 +1,177 @@
 @import "tailwindcss";
 
+:root {
+  /* Typography & Core */
+  font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  /* Semantic Colors (Light Mode) */
+  --color-brand: #2F8F5B;
+  --color-brand-hover: #246D46;
+  --color-text-primary: #16352A;
+  --color-text-muted: #66756E;
+  --color-border-default: #D8E6DD;
+  --color-surface-page: #F7FAF8;
+  --color-surface-background: #F7FAF8;
+  --color-surface-card: #FFFFFF;
+  --color-success-bg: #E8F4EC;
+  --color-success-text: #246D46;
+  --color-error-bg: #FFF0F0;
+  --color-error-text: #E54D4D;
+  --color-warning-bg: #FFF7E8;
+  --color-warning-text: #7B5A1B;
+  --color-element-bg: #FFFFFF;
+  --color-element-border: #D8E6DD;
+
+  color: var(--color-text-primary);
+  background: var(--color-surface-page);
+}
+
+.dark {
+  /* Semantic Colors (Dark Mode Premium) */
+  --color-brand: #34A86A;
+  --color-brand-hover: #42C881;
+  --color-text-primary: #F0Fdf4;
+  --color-text-muted: #94A3B8;
+  --color-border-default: #2A4A38; /* Lighter border for better contrast */
+  --color-surface-page: #040F0A;
+  --color-surface-background: #040F0A;
+  --color-surface-card: #0D261B;   /* Slightly lighter than page */
+  --color-success-bg: #103823;
+  --color-success-text: #4ADE80;
+  --color-error-bg: #3F1616;
+  --color-error-text: #F87171;
+  --color-warning-bg: #42280A;
+  --color-warning-text: #FBBF24;
+  --color-element-bg: rgba(255, 255, 255, 0.04);
+  --color-element-border: rgba(255, 255, 255, 0.1);
+
+  color: var(--color-text-primary);
+  background: var(--color-surface-page);
+}
+
+@theme {
+  --color-brand: var(--color-brand);
+  --color-brand-hover: var(--color-brand-hover);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-muted: var(--color-text-muted);
+  --color-border-default: var(--color-border-default);
+  --color-surface-page: var(--color-surface-page);
+  --color-surface-background: var(--color-surface-background);
+  --color-surface-card: var(--color-surface-card);
+  --color-success-bg: var(--color-success-bg);
+  --color-success-text: var(--color-success-text);
+  --color-error-bg: var(--color-error-bg);
+  --color-error-text: var(--color-error-text);
+  --color-warning-bg: var(--color-warning-bg);
+  --color-warning-text: var(--color-warning-text);
+  --color-element-bg: var(--color-element-bg);
+  --color-element-border: var(--color-element-border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-surface-page);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    top: calc(100% - 4px);
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  aside, 
+  header, 
+  nav, 
+  button, 
+  .print\:hidden {
+    display: none !important;
+  }
+
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .bg-surface-card {
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+    color: black !important;
+  }
+  
+  .text-text-primary, .text-text-muted, .text-white {
+    color: black !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

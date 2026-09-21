@@ -1,7 +1,51 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    "http://localhost:5000/api",
+  timeout: 45000, // 45s — server Gemini has 30s timeout + processing overhead
 });
+
+// Automatically attach JWT
+api.interceptors.request.use(
+  (config) => {
+    const token =
+      sessionStorage.getItem("token");
+
+    if (token) {
+      config.headers.Authorization =
+        `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Handle authentication errors
+api.interceptors.response.use(
+  (response) => response,
+
+  (error) => {
+    if (error.response?.status === 401) {
+      const url = error.config?.url || "";
+      const isAuthEndpoint = url.includes("/auth/login") || url.includes("/auth/register");
+
+      if (!isAuthEndpoint) {
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("user");
+
+        if (window.location.pathname !== "/login") {
+          window.location.href = "/login";
+        }
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export default api;
